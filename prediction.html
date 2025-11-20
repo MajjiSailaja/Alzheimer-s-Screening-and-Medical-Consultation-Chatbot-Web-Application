@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alzheimer's Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #6dd5ed, #2193b0);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #0b3c5d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            background-color: #0b3c5d;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 0 10px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #1d7fa8;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #0b3c5d;
+        }
+
+        input[type="file"] {
+            margin: 20px 0;
+        }
+
+        input[type="submit"] {
+            background-color: #0b3c5d;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1d7fa8;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #0b3c5d;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Alzheimer's Stage Prediction</h1>
+</header>
+
+<nav>
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('reversibility_page') }}">Reversibility</a>
+    <a href="{{ url_for('explainable_ai_page') }}">Explainable AI</a>
+
+</nav>
+
+<div class="container">
+    <h2>Upload MRI Scan</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required><br>
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+        <div class="result">
+            <strong>Prediction:</strong> {{ prediction }}
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
